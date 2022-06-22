@@ -16,7 +16,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         base.OnModelCreating(builder);
         builder.HasDefaultSchema("Identity");
-        builder.Entity<IdentityUser>(entity =>
+        builder.Entity<ApplicationUser>(entity =>
         {
             entity.ToTable(name: "User");
         });

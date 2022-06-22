@@ -1,9 +1,13 @@
 ﻿@using static WebApplicationAdminLTE.Helpers.NavigationIndicatorHelper
+@using WebApplicationAdminLTE.Enums
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.CodeAnalysis.Completion
+@using Microsoft.AspNetCore.Authorization.Infrastructure
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="~/Home" class="brand-link">
-        <img src="~/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="~/img/SCeRPA_Logo.png" alt="SCeRPA Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light"><b>SCeRPA</b></span>
     </a>
     <div class="sidebar">
        
@@ -27,7 +31,30 @@
                             </p>
                         </a>
                     </li>
+                    @if (User.IsInRole(Roles.SuperAdmin.ToString()) || User.IsInRole(Roles.Admin.ToString()) )
+                    {
+                        <li class="nav-item ">
+                            <a asp-controller="RoleManager" asp-action="Index" class="nav-link @Url.MakeActiveClass("rolemanager","index")">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Role Manager
+                                </p>
+                            </a>
+                        </li>
+                    }
+                    @if (User.IsInRole(Roles.SuperAdmin.ToString()) )
+                    {
+                        <li class="nav-item ">
+                            <a asp-controller="UserRoles" asp-action="Index" class="nav-link @Url.MakeActiveClass("userroles","index")">
+                                <i class="nav-icon fas fa-address-card"></i>
+                                <p>
+                                    User Roles
+                                </p>
+                            </a>
+                        </li>
+                    }
                 }
+                
             </ul>
         </nav>
     </div>
