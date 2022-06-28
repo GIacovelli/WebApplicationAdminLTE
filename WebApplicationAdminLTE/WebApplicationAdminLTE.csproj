@@ -18,4 +18,9 @@
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Roles\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Users\Index.cshtml" />
+    </ItemGroup>
+
 </Project>

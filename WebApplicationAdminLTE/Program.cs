@@ -18,8 +18,8 @@ namespace WebApplicationAdminLTE
                     var context = services.GetRequiredService<ApplicationDbContext>();
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    await ContextSeed.SeedRolesAsync(userManager, roleManager);
-                    await ContextSeed.SeedSuperAdminAsync(userManager, roleManager);
+                    await Seeds.DefaultRoles.SeedAsync(userManager, roleManager);
+                    await Seeds.DefaultUsers.SeedSuperAdminAsync(userManager, roleManager);
                 }
                 catch (Exception ex)
                 {

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using WebApplicationAdminLTE.Data;
 using WebApplicationAdminLTE.Models;
+using WebApplicationAdminLTE.Permission;
 
 namespace WebApplicationAdminLTE;
 
@@ -18,6 +20,8 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+        services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
         services.AddDbContext<ApplicationDbContext>(options => 
             options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), 
                 ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection")),

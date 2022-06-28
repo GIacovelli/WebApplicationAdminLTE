@@ -19,6 +19,7 @@ using WebApplicationAdminLTE.Models;
 
 namespace WebApplicationAdminLTE.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
      public class LoginModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;

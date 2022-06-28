@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@using WebApplicationAdminLTE.Constants
+<h1>Thesis Management</h1>
+<br />
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Thesis.Create)).Result.Succeeded)
+{
+    <button class="btn btn-success">Create</button>
+}
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Thesis.View)).Result.Succeeded)
+{
+    <button class="btn btn-info">View</button>
+}
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Thesis.Edit)).Result.Succeeded)
+{
+    <button class="btn btn-warning">Modify</button>
+}
+@if ((AuthorizationService.AuthorizeAsync(User, Permissions.Thesis.Delete)).Result.Succeeded)
+{
+    <button class="btn btn-danger">Delete</button>
+}

@@ -5,11 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebApplicationAdminLTE.Controllers;
 
-[Authorize(Roles = "SuperAdmin,Admin")]
-public class RoleManagerController : Controller
+[Authorize(Roles ="SuperAdmin")]
+public class RolesController : Controller
 {
     private readonly RoleManager<IdentityRole> _roleManager;
-    public RoleManagerController(RoleManager<IdentityRole> roleManager)
+
+    public RolesController(RoleManager<IdentityRole> roleManager)
     {
         _roleManager = roleManager;
     }
@@ -18,8 +19,6 @@ public class RoleManagerController : Controller
         var roles = await _roleManager.Roles.ToListAsync();
         return View(roles);
     }
-    
-    [Authorize(Roles = "SuperAdmin")]
     [HttpPost]
     public async Task<IActionResult> AddRole(string roleName)
     {
@@ -29,5 +28,4 @@ public class RoleManagerController : Controller
         }
         return RedirectToAction("Index");
     }
-    
 }
